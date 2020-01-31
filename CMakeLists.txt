@@ -25,6 +25,7 @@ if (DEFINED ENV{GITACHE_ROOT})
   # (other than creating a file). We'll just proceed and error out when it isn't.
   set(GITACHE_DIR "${GITACHE_ROOT}/gitcache" CACHE INTERNAL "")
   if (NOT EXISTS ${GITACHE_DIR})
+    message(STATUS "Creating \"${GITACHE_DIR}\".")
     file(MAKE_DIRECTORY ${GITACHE_DIR})
     if (NOT EXISTS ${GITACHE_DIR})
       message(FATAL_ERROR "Please make GITACHE_ROOT writable for current user.")
