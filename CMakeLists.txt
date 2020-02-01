@@ -44,7 +44,7 @@ if (DEFINED ENV{GITACHE_ROOT})
   if (_error_result)
     message(FATAL_ERROR "${_error_result}.")
   endif ()
-  message(STATUS "Success.");
+  message(STATUS "Success.")
 else ()
   message(STATUS "Environment variable GITACHE_ROOT is not set: ${_red}gitache disabled${_reset}.")
 endif ()
