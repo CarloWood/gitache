@@ -41,6 +41,7 @@ if (DEFINED ENV{GITACHE_ROOT})
      RESULT_VARIABLE _result
      TIMEOUT 60)
   message(STATUS "result = ${_result}")
+  message(FATAL_ERROR "En nu?")
 else ()
   message(STATUS "Environment variable GITACHE_ROOT is not set: ${_red}gitache disabled${_reset}.")
 endif ()
