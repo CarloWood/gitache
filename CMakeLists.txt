@@ -37,15 +37,14 @@ if (DEFINED ENV{GITACHE_ROOT})
     endif ()
   endif ()
   # The following lock is obtain while cloning and/or updating the gitache-clone repository.
+  message(STATUS "Locking ${GITACHE_DIR}...")
   file(LOCK ${GITACHE_DIR} DIRECTORY
-     RESULT_VARIABLE _result
-     TIMEOUT 1)
-  if (_result)
-    message(STATUS "result = ${_result}")
-  else ()
-    message(STATUS "result is FALSE")
+     RESULT_VARIABLE _error_result
+     TIMEOUT 10)
+  if (_error_result)
+    message(FATAL_ERROR "${_error_result}.")
   endif ()
-  execute_process(COMMAND sleep 10)
+  message(STATUS "Success.");
 else ()
   message(STATUS "Environment variable GITACHE_ROOT is not set: ${_red}gitache disabled${_reset}.")
 endif ()
