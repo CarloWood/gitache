@@ -39,7 +39,7 @@ if (DEFINED ENV{GITACHE_ROOT})
   # The following lock is obtain while cloning and/or updating the gitache-clone repository.
   file(LOCK ${GITACHE_DIR} DIRECTORY
      RESULT_VARIABLE _result
-     TIMEOUT 60)
+     TIMEOUT 1)
   message(STATUS "result = ${_result}")
   execute_process(COMMAND sleep 10)
 else ()
