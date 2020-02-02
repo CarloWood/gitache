@@ -45,6 +45,12 @@ if (DEFINED ENV{GITACHE_ROOT})
     message(FATAL_ERROR "${_error_result}.")
   endif ()
   message(STATUS "Success.")
+  # Fetch gitache-core for the first time.
+  FetchContent_Populate(gitache-core
+    GIT_REPOSITORY "file:///home/carlo/projects/aicxx/ai-statefultask-testsuite/gitache-core"
+    GIT_TAG        "master"
+    SOURCE_DIR     ${GITACHE_DIR}
+  )
 else ()
   message(STATUS "Environment variable GITACHE_ROOT is not set: ${_red}gitache disabled${_reset}.")
 endif ()
