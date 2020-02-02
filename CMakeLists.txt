@@ -65,3 +65,6 @@ if (NOT EXISTS ${GITACHE_DIR})
   # Fetch gitache-core for the first time.
   fetch_gitache_core(${GITACHE_CORE_GIT_REPOSITORY} ${GITACHE_CORE_SHA1} ${GITACHE_DIR})
 endif ()
+
+# Pass control to gitache-core.
+include(${GITACHE_CORE_DIR}/source/main.cmake)
