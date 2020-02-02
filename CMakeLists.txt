@@ -24,7 +24,7 @@ set(GITACHE_CORE_DIR "${GITACHE_ROOT}/gitache-core" CACHE INTERNAL "")
 
 function(fetch_gitache_core)
   # The following lock is obtained while cloning and/or updating the gitache-core repository.
-  message(STATUS "Locking \"${GITACHE_CORE_DIR}...\"")
+  message(STATUS "Locking \"${GITACHE_CORE_DIR}\"...")
   file(LOCK ${GITACHE_CORE_DIR} DIRECTORY
      GUARD FILE
      RESULT_VARIABLE _error_result
