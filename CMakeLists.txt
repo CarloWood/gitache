@@ -31,9 +31,9 @@ function(fetch_gitache_core)
      TIMEOUT 10
   )
   if (_error_result)
-    message(FATAL_ERROR "${_error_result}.")
+    message(FATAL_ERROR "  ${_error_result}.")
   endif ()
-  message(STATUS "Success.")
+  message(STATUS "Success.\n** Populating \"${GITACHE_CORE_DIR}\" with gitache-core ${GITACHE_CORE_SHA1}.")
   FetchContent_Populate(gitache-core
     QUIET
     GIT_REPOSITORY "${GITACHE_CORE_GIT_REPOSITORY}"
@@ -41,7 +41,7 @@ function(fetch_gitache_core)
     SUBBUILD_DIR   "${GITACHE_CORE_DIR}/subbuild"
     SOURCE_DIR     "${GITACHE_CORE_DIR}/source"
   )
-  message(STATUS "Unlocking ${GITACHE_CORE_DIR}...")
+  message(STATUS "Unlocking ${GITACHE_CORE_DIR}")
 endfunction()
 
 message(STATUS "GITACHE_ROOT = \"${GITACHE_ROOT}\"\n** Populating gitache:")
