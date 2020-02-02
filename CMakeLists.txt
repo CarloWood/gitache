@@ -35,6 +35,7 @@ function(fetch_gitache_core)
   endif ()
   message(STATUS "Success.")
   FetchContent_Populate(gitache-core
+    QUIET
     GIT_REPOSITORY "${GITACHE_CORE_GIT_REPOSITORY}"
     GIT_TAG        "${GITACHE_CORE_SHA1}"
     SUBBUILD_DIR   "${GITACHE_CORE_DIR}/subbuild"
