@@ -33,7 +33,7 @@ function(fetch_gitache_core)
   if (_error_result)
     message(FATAL_ERROR "  ${_error_result}.")
   endif ()
-  message(STATUS "  success.\n** Populating \"${GITACHE_CORE_DIR}\" with gitache-core ${GITACHE_CORE_SHA1}.")
+  message(STATUS "  success.\n** Populating \"${GITACHE_CORE_DIR}\" with ${GITACHE_CORE_SHA1}.")
   FetchContent_Populate(gitache-core
     QUIET
     GIT_REPOSITORY "${GITACHE_CORE_GIT_REPOSITORY}"
