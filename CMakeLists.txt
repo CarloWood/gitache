@@ -62,7 +62,6 @@ if (NOT EXISTS ${GITACHE_DIR})
   if (NOT EXISTS ${GITACHE_DIR})
     message(FATAL_ERROR "Please make GITACHE_ROOT writable for current user.")
   endif ()
+  # Fetch gitache-core for the first time.
+  fetch_gitache_core(${GITACHE_CORE_GIT_REPOSITORY} ${GITACHE_CORE_SHA1} ${GITACHE_DIR})
 endif ()
-
-# Fetch gitache-core for the first time.
-fetch_gitache_core(${GITACHE_CORE_GIT_REPOSITORY} ${GITACHE_CORE_SHA1} ${GITACHE_DIR})
