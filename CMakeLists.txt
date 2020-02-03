@@ -67,13 +67,11 @@ if (NOT EXISTS ${GITACHE_CORE_DIR})
 endif ()
 
 # Pass control to gitache-core. If "main.cmake" is reloaded we do the include twice.
-#set(GITACHE_NEED_INCLUDE TRUE CACHE INTERNAL "")
-set(GITACHE_NEED_INCLUDE TRUE)
-while (GITACHE_NEED_INCLUDE)
-  #set(GITACHE_NEED_INCLUDE FALSE CACHE INTERNAL "")
-  set(GITACHE_NEED_INCLUDE FALSE)
-  include("${GITACHE_CORE_DIR}/source/main.cmake")
-  if (GITACHE_NEED_INCLUDE)
+set(gitache_need_include TRUE)
+while (gitache_need_include)
+  set(gitache_need_include FALSE)
+  include("${GITACHE_CORE_DIR}/source/main.cmake") # Sets gitache_need_include to TRUE if main.cmake got replaced.
+  if (gitache_need_include)
     message(DEBUG "Gitache-core was updated: reloading \"${GITACHE_CORE_DIR}/source/main.cmake\"!")
   endif ()
 endwhile ()
