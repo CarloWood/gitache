@@ -70,8 +70,8 @@ endif ()
 set(gitache_need_include TRUE)
 while (gitache_need_include)
   set(gitache_need_include FALSE)
-  file(COPY "${GITACHE_CORE_DIR}/source/updater.cmake" DESTINATION "${GITACHE_CORE_DIR}/tmp-updater")
-  include("${GITACHE_CORE_DIR}/source/tmp-updater/updater.cmake") # Sets gitache_need_include to TRUE if updater.cmake got replaced.
+  file(COPY "${GITACHE_CORE_DIR}/source/updater.cmake" DESTINATION "${GITACHE_CORE_DIR}")
+  include("${GITACHE_CORE_DIR}/updater.cmake") # Sets gitache_need_include to TRUE if source/updater.cmake got replaced.
   message(STATUS "After include: gitache_need_include = ${gitache_need_include}.")
   if (gitache_need_include)
     message(DEBUG "Gitache-core was updated: reloading \"${GITACHE_CORE_DIR}/source/main.cmake\"!")
