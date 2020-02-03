@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.14...3.16)
 
-message(STATUS "THIS IS THE LATEST VERSION!")
-
 string(ASCII 27 _escape)
 set(_red "${_escape}[31m")
 set(_reset "${_escape}[m")
