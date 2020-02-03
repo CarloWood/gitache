@@ -18,7 +18,7 @@ project(gitache
 
 # Each gitache sha1 (commit) is directly linked to a certain gitache-core commit, so that if you do not
 # change gitache version (sha1) you also won't get a different gitache-core.
-set(GITACHE_CORE_SHA1 "master")
+set(GITACHE_CORE_SHA1 "$ENV{GITACHE_CORE_SHA1}") # FIXME: this should be a fixed SHA1.
 set(GITACHE_CORE_GIT_REPOSITORY "file:///home/carlo/projects/aicxx/ai-statefultask-testsuite/gitache-core")
 set(GITACHE_CORE_DIR "${GITACHE_ROOT}/gitache-core" CACHE INTERNAL "")
 
