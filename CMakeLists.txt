@@ -66,11 +66,12 @@ if (NOT EXISTS ${GITACHE_CORE_DIR})
   fetch_gitache_core()
 endif ()
 
-# Pass control to gitache-core. If "main.cmake" is reloaded we do the include twice.
+# Pass control to gitache-core. If "updater.cmake" is reloaded we do the include twice.
 set(gitache_need_include TRUE)
 while (gitache_need_include)
   set(gitache_need_include FALSE)
-  include("${GITACHE_CORE_DIR}/source/main.cmake") # Sets gitache_need_include to TRUE if main.cmake got replaced.
+  file(COPY "${GITACHE_CORE_DIR}/source/updater.cmake" DESTINATION "${GITACHE_CORE_DIR}/source")
+  include("${GITACHE_CORE_DIR}/source/updater-tmp.cmake") # Sets gitache_need_include to TRUE if main.cmake got replaced.
   message(STATUS "After include: gitache_need_include = ${gitache_need_include}.")
   if (gitache_need_include)
     message(DEBUG "Gitache-core was updated: reloading \"${GITACHE_CORE_DIR}/source/main.cmake\"!")
