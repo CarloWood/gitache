@@ -68,10 +68,10 @@ endif ()
 
 # Pass control to gitache-core. If "main.cmake" is reloaded we do the include twice.
 set(GITACHE_NEED_INCLUDE TRUE CACHE INTERNAL "")
-return()
 while (GITACHE_NEED_INCLUDE)
   set(GITACHE_NEED_INCLUDE FALSE CACHE INTERNAL "")
   include("${GITACHE_CORE_DIR}/source/main.cmake")
+return()
   if (GITACHE_NEED_INCLUDE)
     message(DEBUG "Gitache-core was updated: reloading \"${GITACHE_CORE_DIR}/source/main.cmake\"!")
   endif ()
