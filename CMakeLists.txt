@@ -56,15 +56,14 @@ if (NOT IS_DIRECTORY ${GITACHE_ROOT})
 endif ()
 # We're not testing if the directory is writable because cmake isn't supporting that
 # (other than creating a file). We'll just proceed and error out when it isn't.
-set(GITACHE_DIR "${GITACHE_ROOT}/gitache-core" CACHE INTERNAL "")
-if (NOT EXISTS ${GITACHE_DIR})
-  message(STATUS "Creating \"${GITACHE_DIR}\".")
-  file(MAKE_DIRECTORY ${GITACHE_DIR})
-  if (NOT EXISTS ${GITACHE_DIR})
+if (NOT EXISTS ${GITACHE_CORE_DIR})
+  message(STATUS "Creating \"${GITACHE_CORE_DIR}\".")
+  file(MAKE_DIRECTORY ${GITACHE_CORE_DIR})
+  if (NOT EXISTS ${GITACHE_CORE_DIR})
     message(FATAL_ERROR "Please make GITACHE_ROOT writable for current user.")
   endif ()
   # Fetch gitache-core for the first time.
-  fetch_gitache_core(${GITACHE_CORE_GIT_REPOSITORY} ${GITACHE_CORE_SHA1} ${GITACHE_DIR})
+  fetch_gitache_core()
 endif ()
 
 # Pass control to gitache-core. If "main.cmake" is reloaded we do the include twice.
