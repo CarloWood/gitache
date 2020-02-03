@@ -68,9 +68,9 @@ if (NOT EXISTS ${GITACHE_DIR})
 endif ()
 
 # Pass control to gitache-core.
-set(GITACHE_CORE_RELOADED TRUE)
+set(GITACHE_CORE_RELOADED TRUE CACHE INTERNAL "")
 while (GITACHE_CORE_RELOADED)
-  set(GITACHE_CORE_RELOADED FALSE)
+  set(GITACHE_CORE_RELOADED FALSE CACHE INTERNAL "")
   message(STATUS "Entering include()")
   include(${GITACHE_CORE_DIR}/source/main.cmake)
   message(STATUS "GITACHE_CORE_RELOADED = \"${GITACHE_CORE_RELOADED}\"")
