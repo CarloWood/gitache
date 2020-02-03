@@ -75,3 +75,7 @@ while (GITACHE_NEED_INCLUDE)
     message(DEBUG "Gitache-core was updated: reloading \"${GITACHE_CORE_DIR}/source/main.cmake\"!")
   endif ()
 endwhile ()
+
+if (NOT GITACHE_CORE_PARANOID_CHECK STREQUAL GITACHE_CORE_SHA1)
+  message(FATAL_ERROR "*** Internal error *** Please report. Rerun to continue normally.")
+endif ()
