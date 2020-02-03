@@ -68,4 +68,11 @@ if (NOT EXISTS ${GITACHE_DIR})
 endif ()
 
 # Pass control to gitache-core.
-include(${GITACHE_CORE_DIR}/source/main.cmake)
+set(GITACHE_CORE_RELOADED TRUE)
+while (GITACHE_CORE_RELOADED)
+  set(GITACHE_CORE_RELOADED FALSE)
+  include(${GITACHE_CORE_DIR}/source/main.cmake)
+  if (GITACHE_CORE_RELOADED)
+    message(DEBUG "Gitache-core was updated: reloading \"${GITACHE_CORE_DIR}/source/main.cmake\"!")
+  endif ()
+endwhile ()
