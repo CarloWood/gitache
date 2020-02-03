@@ -71,6 +71,7 @@ set(gitache_need_include TRUE)
 while (gitache_need_include)
   set(gitache_need_include FALSE)
   include("${GITACHE_CORE_DIR}/source/main.cmake") # Sets gitache_need_include to TRUE if main.cmake got replaced.
+  message(STATUS "After include: gitache_need_include = ${gitache_need_include}.")
   if (gitache_need_include)
     message(DEBUG "Gitache-core was updated: reloading \"${GITACHE_CORE_DIR}/source/main.cmake\"!")
   endif ()
