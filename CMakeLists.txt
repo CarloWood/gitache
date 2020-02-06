@@ -66,17 +66,33 @@ if (NOT EXISTS ${GITACHE_CORE_DIR})
   fetch_gitache_core()
 endif ()
 
-# Pass control to gitache-core. If "updater.cmake" is reloaded we do the include twice.
-set(gitache_need_include TRUE)
-while (gitache_need_include)
-  set(gitache_need_include FALSE)
-  file(COPY "${GITACHE_CORE_DIR}/source/updater.cmake" DESTINATION "${GITACHE_CORE_DIR}")
-  include("${GITACHE_CORE_DIR}/updater.cmake") # Sets gitache_need_include to TRUE if source/updater.cmake got replaced.
-  if (gitache_need_include)
-    message(DEBUG "Gitache-core was updated: reloading \"${GITACHE_CORE_DIR}/source/updater.cmake\"!")
-  endif ()
-endwhile ()
+# Should we use a submodule that is already added to the current source directory?
+if (EXISTS ${CMAKE_SOURCE_DIR}/gitache-core/.git)
+  set(gitache_core_is_local TRUE)
+else ()
+  set(gitache_core_is_local FALSE)
+endif ()
 
-if (NOT GITACHE_CORE_PARANOID_CHECK STREQUAL GITACHE_CORE_SHA1)
-  message(FATAL_ERROR "*** Internal error *** Please report. Rerun to continue normally.")
+if (gitache_core_is_local)
+  message(STATUS "Found local gitache-core submodule at \"${CMAKE_SOURCE_DIR}/gitache-core\". Using that.")
+  # Set the gitache-core source directory.
+  set(GITACHE_CORE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/gitache-core")
+  include("${GITACHE_CORE_SOURCE_DIR}/updater.cmake")
+else ()
+  # Set the gitache-core source directory.
+  set(GITACHE_CORE_SOURCE_DIR "${GITACHE_CORE_DIR}/source")
+  # Pass control to gitache-core: updater.cmake, when successful, ends with including main.cmake.
+  # If "updater.cmake" is reloaded, it sets gitache_need_include to TRUE and we do the include twice.
+  set(gitache_need_include TRUE)
+  while (gitache_need_include)
+    set(gitache_need_include FALSE)
+    file(COPY "${GITACHE_CORE_DIR}/source/updater.cmake" DESTINATION "${GITACHE_CORE_DIR}")
+    include("${GITACHE_CORE_DIR}/updater.cmake") # Sets gitache_need_include to TRUE if source/updater.cmake got replaced.
+    # Note: here we could REMOVE the copied file ${GITACHE_CORE_DIR}/updater.cmake again, but
+    # because COPY checks the timestamp on source and destination and skips the copy when
+    # those are equal, we can use the copy as a cache.
+    if (gitache_need_include)
+      message(DEBUG "Gitache-core was updated: reloading \"${GITACHE_CORE_DIR}/source/updater.cmake\"!")
+    endif ()
+  endwhile ()
 endif ()
