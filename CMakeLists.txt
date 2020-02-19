@@ -22,17 +22,26 @@ set(GITACHE_CORE_SHA1 "$ENV{GITACHE_CORE_SHA1}") # FIXME: this should be a fixed
 set(GITACHE_CORE_GIT_REPOSITORY "file:///home/carlo/projects/aicxx/ai-statefultask-testsuite/gitache-core")
 set(GITACHE_CORE_DIR "${GITACHE_ROOT}/gitache-core" CACHE INTERNAL "")
 
-function(fetch_gitache_core)
-  # The following lock is obtained while cloning and/or updating the gitache-core repository.
-  message(STATUS "Locking \"${GITACHE_CORE_DIR}\"...")
+function(lock_core_directory)
+  message(STATUS "Locking \"${GITACHE_CORE_DIR}\" ...")
   file(LOCK ${GITACHE_CORE_DIR} DIRECTORY
-     GUARD FILE
-     RESULT_VARIABLE _error_result
-     TIMEOUT 10
+    GUARD PROCESS
+    RESULT_VARIABLE _error_result
+    TIMEOUT 10
   )
   if (_error_result)
     message(FATAL_ERROR "  ${_error_result}.")
   endif ()
+endfunction()
+
+function(unlock_core_directory)
+  message(STATUS "Unlocking \"${GITACHE_CORE_DIR}\".")
+  file(LOCK ${GITACHE_CORE_DIR} DIRECTORY RELEASE)
+endfunction()
+
+function(fetch_gitache_core)
+  # The following lock is obtained while cloning and/or updating the gitache-core repository.
+  lock_core_directory()
   message(STATUS "  success.\n** Populating \"${GITACHE_CORE_DIR}\" with ${GITACHE_CORE_SHA1}.")
   FetchContent_Populate(gitache-core
     QUIET
@@ -41,18 +50,18 @@ function(fetch_gitache_core)
     SUBBUILD_DIR   "${GITACHE_CORE_DIR}/subbuild"
     SOURCE_DIR     "${GITACHE_CORE_DIR}/source"
   )
-  message(STATUS "Unlocking \"${GITACHE_CORE_DIR}\".")
+  unlock_core_directory()
 endfunction()
 
 message(STATUS "GITACHE_ROOT = \"${GITACHE_ROOT}\"\n** Populating gitache:")
 if (NOT IS_ABSOLUTE ${GITACHE_ROOT})
-  message(FATAL_ERROR "GITACHE_ROOT must be an absolute path.")
+  message(FATAL_ERROR " GITACHE_ROOT must be an absolute path.")
 endif ()
 if (NOT EXISTS ${GITACHE_ROOT})
-  message(FATAL_ERROR "${GITACHE_ROOT}: no such file or directory.")
+  message(FATAL_ERROR " ${GITACHE_ROOT}: no such file or directory.")
 endif ()
 if (NOT IS_DIRECTORY ${GITACHE_ROOT})
-  message(FATAL_ERROR "${GITACHE_ROOT}: not a directory.")
+  message(FATAL_ERROR " ${GITACHE_ROOT}: not a directory.")
 endif ()
 # We're not testing if the directory is writable because cmake isn't supporting that
 # (other than creating a file). We'll just proceed and error out when it isn't.
@@ -60,7 +69,7 @@ if (NOT EXISTS ${GITACHE_CORE_DIR})
   message(STATUS "Creating \"${GITACHE_CORE_DIR}\".")
   file(MAKE_DIRECTORY ${GITACHE_CORE_DIR})
   if (NOT EXISTS ${GITACHE_CORE_DIR})
-    message(FATAL_ERROR "Please make GITACHE_ROOT writable for current user.")
+    message(FATAL_ERROR " Please make GITACHE_ROOT writable for current user.")
   endif ()
   # Fetch gitache-core for the first time.
   fetch_gitache_core()
