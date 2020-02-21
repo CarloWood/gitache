@@ -23,7 +23,7 @@ set(GITACHE_CORE_GIT_REPOSITORY "file:///home/carlo/projects/aicxx/ai-statefulta
 set(GITACHE_CORE_DIR "${GITACHE_ROOT}/gitache-core" CACHE INTERNAL "")
 
 function(lock_core_directory)
-  message(STATUS "Locking \"${GITACHE_CORE_DIR}\" ...")
+  message(STATUS "Locking directory \"${GITACHE_CORE_DIR}\"...")
   file(LOCK ${GITACHE_CORE_DIR} DIRECTORY
     GUARD PROCESS
     RESULT_VARIABLE _error_result
@@ -35,7 +35,7 @@ function(lock_core_directory)
 endfunction()
 
 function(unlock_core_directory)
-  message(STATUS "Unlocking \"${GITACHE_CORE_DIR}\".")
+  message(STATUS "Unlocking directory \"${GITACHE_CORE_DIR}\".")
   file(LOCK ${GITACHE_CORE_DIR} DIRECTORY RELEASE)
 endfunction()
 
@@ -101,7 +101,7 @@ else ()
     # because COPY checks the timestamp on source and destination and skips the copy when
     # those are equal, we can use the copy as a cache.
     if (gitache_need_include)
-      message(DEBUG "Gitache-core was updated: reloading \"${GITACHE_CORE_DIR}/source/updater.cmake\"!")
+      message(DEBUG "DEBUG: gitache-core was updated: reloading \"${GITACHE_CORE_DIR}/source/updater.cmake\"!")
     endif ()
   endwhile ()
 endif ()
