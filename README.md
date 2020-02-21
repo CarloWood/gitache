@@ -30,15 +30,15 @@ of your project and replace all of the above with,
 That will not update gitache automatically but simply use
 whatever you have checked out.
 
-Note that the user must have set the environment variable
-`GITACHE_ROOT` to a writable directory, or gitache will do
+Note that the user must have the environment variable
+`GITACHE_ROOT` set to a writable directory, or gitache will do
 nothing except print the message:
 
-   -- Environment variable GITACHE\_ROOT is not set: gitache disabled.   
+    -- Environment variable GITACHE_ROOT is not set: gitache disabled.   
 
 ## Gitache developers
 
-Tf you want to experiment with making changes to gitache itself,
+If you want to experiment with making changes to gitache itself,
 and want to support both (a gitache submodule being present, or not) you
 can use the first version above but add immediately after the `include(FetchContent)`
 the following lines:
