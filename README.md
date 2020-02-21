@@ -20,8 +20,6 @@ Where, if you're paranoid, you should replace `stable` with its
 git commit sha1 (from the `stable` branch, the `master` branch might
 be unstable).
 
-Note that the minimum cmake version required is 3.14.
-
 Alternatively you can add gitache as a submodule to the root
 of your project and replace all of the above with,
 
@@ -30,7 +28,11 @@ of your project and replace all of the above with,
 That will not update gitache automatically but simply use
 whatever you have checked out.
 
-Note that the user must have the environment variable
+## Requirements
+
+The minimum cmake version required is 3.14.
+
+Furthermore, the user must have the environment variable
 `GITACHE_ROOT` set to a writable directory, or gitache will do
 nothing except print the message:
 
