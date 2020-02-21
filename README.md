@@ -1,8 +1,10 @@
 ** This is still work in progress **
 
-* Usage *
+# Usage
 
-Add to the CMakeLists.txt of the main project, after its `project` line:
+## Basic usage
+
+Add to the `CMakeLists.txt` of the main project, after its `project()` line:
 
     include(FetchContent)  
     
@@ -14,22 +16,31 @@ Add to the CMakeLists.txt of the main project, after its `project` line:
     )
     FetchContent_MakeAvailable(gitache)  
 
-And if you're paranoid, replace `stable` with a git commit sha1
-from the `stable` branch. The `master` branch might be unstable.
+Where, if you're paranoid, you should replace `stable` with its
+git commit sha1 (from the `stable` branch, the `master` branch might
+be unstable).
 
 Note that the minimum cmake version required is 3.14.
 
 Alternatively you can add gitache as a submodule to the root
-of your project and replace the above with a simple:
+of your project and replace all of the above with,
 
     include(${CMAKE_CURRENT_LIST_DIR}/gitache/gateway.cmake)
 
 That will not update gitache automatically but simply use
 whatever you have checked out.
 
-Last, if you want to experiment with making changes to gitache itself,
+Note that the user must have set the environment variable
+`GITACHE_ROOT` to a writable directory, or gitache will do
+nothing except print the message:
+
+   -- Environment variable GITACHE\_ROOT is not set: gitache disabled.   
+
+## Gitache developers
+
+Tf you want to experiment with making changes to gitache itself,
 and want to support both (a gitache submodule being present, or not) you
-can use the first version but add immediately after the `include(FetchContent)`
+can use the first version above but add immediately after the `include(FetchContent)`
 the following lines:
 
     # If a local gitache submodule is present then use that rather than downloading one.  
