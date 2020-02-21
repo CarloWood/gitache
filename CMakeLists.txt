@@ -18,8 +18,15 @@ project(gitache
 
 # Each gitache sha1 (commit) is directly linked to a certain gitache-core commit, so that if you do not
 # change gitache version (sha1) you also won't get a different gitache-core.
-set(GITACHE_CORE_SHA1 "$ENV{GITACHE_CORE_SHA1}") # FIXME: this should be a fixed SHA1.
-set(GITACHE_CORE_GIT_REPOSITORY "file:///home/carlo/projects/aicxx/ai-statefultask-testsuite/gitache-core")
+if (DEFINED ENV{GITACHE_CORE_SHA1})
+  # This feature is intended for the developer of gitache.
+  message(STATUS "Using environment variable GITACHE_CORE_SHA1 as gitache-core sha1.")
+  set(GITACHE_CORE_SHA1 "$ENV{GITACHE_CORE_SHA1}")
+else ()
+  # Each gitache version (sha1) corresponds to a fixed gitache-core version (sha1):
+  set(GITACHE_CORE_SHA1 "b8e0c072ddf8c9d921935d599857b799ce3bd72f")
+endif ()
+set(GITACHE_CORE_GIT_REPOSITORY "https://github.com/CarloWood/gitache-core.git")
 set(GITACHE_CORE_DIR "${GITACHE_ROOT}/gitache-core" CACHE INTERNAL "")
 
 function(lock_core_directory)
