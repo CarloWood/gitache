@@ -13,3 +13,5 @@ Usage, add to the CMakeLists.txt of the main project, after its `project` line:
     FetchContent_MakeAvailable(gitache)  
 
 And if you're paranoid, replace `master` with a git commit sha1.
+
+Note that the minimum cmake version required is 3.14.
