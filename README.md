@@ -32,6 +32,12 @@ of your project and replace all of the above with,
 That will not update gitache automatically but simply use
 whatever you have checked out.
 
+Each package listed in `GITACHE_PACKAGES` must have a configuration
+file in the cmake cache variable `GITACHE_CONFIGS_DIR`, the default
+being `${CMAKE_SOURCE_DIR}/cmake/gitache-configs`, with the name
+`<package>.cmake`. See https://github.com/CarloWood/gitache-core for
+a description of the contents.
+
 ## Requirements
 
 The minimum cmake version required is 3.14.
@@ -41,6 +47,20 @@ Furthermore, the user must have the environment variable
 nothing except print the message:
 
     -- Environment variable GITACHE_ROOT is not set: gitache disabled.   
+
+Finally, the user must know what they are doing: warn them not
+to set `LD_LIBRARY_PATH` pointing to a library that is installed
+by gitache. This wouldn't work since the project is linked against
+the version compiled by gitache, so at runtime -rpath must be honored
+and (unfortunately?) `LD_LIBRARY_PATH` has a higher precedence.
+
+As an alternatively you could add the following line to your project
+(assuming you're creating an exectable and your linker honors that flag):
+
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--disable-new-dtags")
+
+after which the `-rpath` will get precedence so the value of `LD_LIBRARY_PATH`
+in the users environment becomes unimportant.
 
 ## Gitache developers
 

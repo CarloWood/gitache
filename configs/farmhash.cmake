@@ -1,2 +1,0 @@
-gitache_config(
-)
