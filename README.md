@@ -55,7 +55,7 @@ the version compiled by gitache, so at runtime -rpath must be honored
 and (unfortunately?) `LD_LIBRARY_PATH` has a higher precedence.
 
 As an alternatively you could add the following line to your project
-(assuming you're creating an exectable and your linker honors that flag):
+(assuming you're creating an executable and your linker honors that flag):
 
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--disable-new-dtags")
 
