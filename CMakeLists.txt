@@ -24,7 +24,7 @@ if (DEFINED ENV{GITACHE_CORE_SHA1})
   set(GITACHE_CORE_SHA1 "$ENV{GITACHE_CORE_SHA1}")
 else ()
   # Each gitache version (sha1) corresponds to a fixed gitache-core version (sha1):
-  set(GITACHE_CORE_SHA1 "9dbd4062f68a2a7218d04f9f76a03103841e6e49")
+  set(GITACHE_CORE_SHA1 "956aaa27390365d9f7d846dfc3411ca0bcc7ac71")
 endif ()
 set(GITACHE_CORE_GIT_REPOSITORY "https://github.com/CarloWood/gitache-core.git")
 set(GITACHE_CORE_DIR "${GITACHE_ROOT}/gitache-core" CACHE INTERNAL "")
