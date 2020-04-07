@@ -1,5 +1,3 @@
-** This is still work in progress **
-
 # Usage
 
 ## Basic usage
