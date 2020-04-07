@@ -16,7 +16,10 @@ Add to the `CMakeLists.txt` of the main project, after its `project()` line:
 
 Where, if you're paranoid, you should replace `stable` with its
 git commit sha1 (from the `stable` branch, the `master` branch might
-be unstable).
+be unstable). Both, `stable` and `master` will cause a `git fetch`
+every time the project is configured to see if the project was updated,
+so for a large project please just use the sha1 of stable (or master,
+if that works at that moment).
 
 `GITACHE_PACKAGES` must be set to the list of packages that need
 to be downloaded, configured and compiled (if not already in the cache).
@@ -47,12 +50,12 @@ nothing except print the message:
     -- Environment variable GITACHE_ROOT is not set: gitache disabled.   
 
 Finally, the user must know what they are doing: warn them not
-to set `LD_LIBRARY_PATH` pointing to a library that is installed
+to set `LD_LIBRARY_PATH` pointing to a library that is also installed
 by gitache. This wouldn't work since the project is linked against
-the version compiled by gitache, so at runtime -rpath must be honored
+the version compiled by gitache, so at runtime `-rpath` must be honored
 and (unfortunately?) `LD_LIBRARY_PATH` has a higher precedence.
 
-As an alternatively you could add the following line to your project
+As an alternative you could add the following line to your project
 (assuming you're creating an executable and your linker honors that flag):
 
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--disable-new-dtags")
