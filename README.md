@@ -2,7 +2,7 @@
 
 ## Basic usage
 
-Add to the `CMakeLists.txt` of the main project, after its `project()` line (required cmake 3.14 or later):
+Add to the `CMakeLists.txt` of the main project, after its `project()` line (requires cmake 3.14 or later):
 
     include(FetchContent)  
     
