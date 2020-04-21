@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.14...3.16)
+cmake_minimum_required(VERSION 3.14...3.17)
+
+message(DEBUG "DEBUG: Entering ${CMAKE_CURRENT_LIST_FILE}")
 
 string(ASCII 27 _escape)
 set(_red "${_escape}[31m")
