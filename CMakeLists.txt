@@ -13,6 +13,12 @@ if (NOT DEFINED ENV{GITACHE_ROOT})
 endif ()
 set(GITACHE_ROOT $ENV{GITACHE_ROOT} CACHE INTERNAL "")
 
+# Sanity check.
+if (NOT GITACHE_PACKAGES)
+  message(WARNING "${_red}GITACHE_PACKAGES is not set or empty${_reset}. Bailing out. ${_red}gitache disabled${_reset}.")
+  return()
+endif ()
+
 project(gitache
   LANGUAGES NONE
   DESCRIPTION "The gateway to gitache-core."
