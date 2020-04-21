@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.14...3.16)
+cmake_minimum_required(VERSION 3.14...3.17)
+
+message(DEBUG "DEBUG: Entering ${CMAKE_CURRENT_LIST_FILE}")
 
 string(ASCII 27 _escape)
 set(_red "${_escape}[31m")
@@ -24,7 +26,7 @@ if (DEFINED ENV{GITACHE_CORE_SHA1})
   set(GITACHE_CORE_SHA1 "$ENV{GITACHE_CORE_SHA1}")
 else ()
   # Each gitache version (sha1) corresponds to a fixed gitache-core version (sha1):
-  set(GITACHE_CORE_SHA1 "master")
+  set(GITACHE_CORE_SHA1 "7181a1ee9e8024ad2441c3524d807ffde8425eac")
 endif ()
 set(GITACHE_CORE_GIT_REPOSITORY "https://github.com/CarloWood/gitache-core.git")
 set(GITACHE_CORE_DIR "${GITACHE_ROOT}/gitache-core" CACHE INTERNAL "")
