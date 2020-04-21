@@ -25,8 +25,9 @@ if (DEFINED ENV{GITACHE_CORE_SHA1})
   message(STATUS "Using environment variable GITACHE_CORE_SHA1 as gitache-core sha1.")
   set(GITACHE_CORE_SHA1 "$ENV{GITACHE_CORE_SHA1}")
 else ()
-  # Each gitache version (sha1) corresponds to a fixed gitache-core version (sha1):
-  set(GITACHE_CORE_SHA1 "7181a1ee9e8024ad2441c3524d807ffde8425eac")
+  # The master branch of gitache follows the master branch of gitache-core.
+  # Use the branch 'stable' of gitache to get a fixed (stable) SHA1 here.
+  set(GITACHE_CORE_SHA1 "master")
 endif ()
 set(GITACHE_CORE_GIT_REPOSITORY "https://github.com/CarloWood/gitache-core.git")
 set(GITACHE_CORE_DIR "${GITACHE_ROOT}/gitache-core" CACHE INTERNAL "")
