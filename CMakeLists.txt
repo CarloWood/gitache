@@ -69,7 +69,11 @@ function(fetch_gitache_core)
   unlock_core_directory()
 endfunction()
 
-message(STATUS "GITACHE_ROOT = \"${GITACHE_ROOT}\"\n** Populating gitache:")
+message(STATUS "----------------------------------------------------\n** Populating gitache:")
+message(STATUS "GITACHE_ROOT = \"${GITACHE_ROOT}\"")
+# This seems informative enough to warrant it always being printed:
+# Use -DCMAKE_MESSAGE_LOG_LEVEL=DEBUG for maximum output.
+message(STATUS "CMAKE_MESSAGE_LOG_LEVEL = \"${CMAKE_MESSAGE_LOG_LEVEL}\"")
 if (NOT IS_ABSOLUTE ${GITACHE_ROOT})
   message(FATAL_ERROR " GITACHE_ROOT must be an absolute path.")
 endif ()
