@@ -13,6 +13,12 @@ if (NOT DEFINED ENV{GITACHE_ROOT})
 endif ()
 set(GITACHE_ROOT $ENV{GITACHE_ROOT} CACHE INTERNAL "")
 
+# Sanity check.
+if (NOT GITACHE_PACKAGES)
+  message(WARNING "${_red}GITACHE_PACKAGES is not set or empty${_reset}. Bailing out. ${_red}gitache disabled${_reset}.")
+  return()
+endif ()
+
 project(gitache
   LANGUAGES NONE
   DESCRIPTION "The gateway to gitache-core."
@@ -26,7 +32,7 @@ if (DEFINED ENV{GITACHE_CORE_SHA1})
   set(GITACHE_CORE_SHA1 "$ENV{GITACHE_CORE_SHA1}")
 else ()
   # Each gitache version (sha1) corresponds to a fixed gitache-core version (sha1):
-  set(GITACHE_CORE_SHA1 "8e800da57dc2502928bb72a8688d54af9d05bb09")
+  set(GITACHE_CORE_SHA1 "e5ef040c28810ca7a1a5e200268af683440fbd27")
 endif ()
 set(GITACHE_CORE_GIT_REPOSITORY "https://github.com/CarloWood/gitache-core.git")
 set(GITACHE_CORE_DIR "${GITACHE_ROOT}/gitache-core" CACHE INTERNAL "")
@@ -62,7 +68,11 @@ function(fetch_gitache_core)
   unlock_core_directory()
 endfunction()
 
-message(STATUS "GITACHE_ROOT = \"${GITACHE_ROOT}\"\n** Populating gitache:")
+message(STATUS "----------------------------------------------------\n** Populating gitache:")
+message(STATUS "GITACHE_ROOT = \"${GITACHE_ROOT}\"")
+# This seems informative enough to warrant it always being printed:
+# Use -DCMAKE_MESSAGE_LOG_LEVEL=DEBUG for maximum output.
+message(STATUS "CMAKE_MESSAGE_LOG_LEVEL = \"${CMAKE_MESSAGE_LOG_LEVEL}\"")
 if (NOT IS_ABSOLUTE ${GITACHE_ROOT})
   message(FATAL_ERROR " GITACHE_ROOT must be an absolute path.")
 endif ()
