@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14...3.17)
+cmake_minimum_required(VERSION 3.18...4.1.1)
 
 message(DEBUG "DEBUG: Entering ${CMAKE_CURRENT_LIST_FILE}")
 

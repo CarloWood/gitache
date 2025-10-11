@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.14)
+# Gitache-core uses SOURCE_SUBDIR in FetchContent_Declare.
+cmake_minimum_required(VERSION 3.18)
 
 # To enable DEBUG messsages, pass -DCMAKE_MESSAGE_LOG_LEVEL=DEBUG to cmake on the command line.
 message(DEBUG "DEBUG: Entering ${CMAKE_CURRENT_LIST_FILE}")
