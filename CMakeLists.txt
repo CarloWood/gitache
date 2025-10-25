@@ -96,7 +96,7 @@ if (NOT EXISTS ${GITACHE_CORE_DIR})
 endif ()
 
 # Should we use a submodule that is already added to the current source directory?
-if (EXISTS ${CMAKE_SOURCE_DIR}/gitache-core/.git)
+if (EXISTS ${CMAKE_SOURCE_DIR}/gitache-core/main.cmake)
   set(gitache_core_is_local TRUE)
 else ()
   set(gitache_core_is_local FALSE)
@@ -125,3 +125,4 @@ else ()
     endif ()
   endwhile ()
 endif ()
+message(DEBUG "gitache/CMakeLists.txt: libcwd_r_ROOT = \"${libcwd_r_ROOT}\"")
