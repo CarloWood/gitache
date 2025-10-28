@@ -1,3 +1,9 @@
+# IMPORTANT UPDATE INFORMATION
+
+Because I renamed the function that locks the gitache core directory, automatic
+updating will fail. To get the latest (stable) version make sure to ***DELETE*** the build directory of your current project ***AND DELETE*** `gitache-core` in your `$GITACHE_ROOT`.
+Then (re)run cmake to configure.
+
 # Usage
 
 ## Basic usage
