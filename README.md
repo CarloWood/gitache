@@ -12,7 +12,7 @@ Add to the `CMakeLists.txt` of the main project, after its `project()` line (req
 
     include(FetchContent)  
     
-    set(GITACHE_PACKAGES libcwd_r)  # List of requested packages (example).
+    set(GITACHE_PACKAGES libcwd)  # List of requested packages (example).
     FetchContent_Declare(  
       gitache  
       GIT_REPOSITORY "https://github.com/CarloWood/gitache.git"  
@@ -33,7 +33,7 @@ to be downloaded, configured and compiled (if not already in the cache).
 Alternatively you can add gitache as a submodule to the root
 of your project and replace all of the above with,
 
-    set(GITACHE_PACKAGES libcwd_r)  # List of requested packages (example).
+    set(GITACHE_PACKAGES libcwd)  # List of requested packages (example).
     include(gitache/gateway.cmake)
 
 That will not update gitache automatically but simply use
